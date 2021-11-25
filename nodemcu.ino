@@ -4,16 +4,12 @@
 #define RZERO 76.63
 #define LED D7
 LiquidCrystal_I2C lcd(0x27, 16,2);
-String apiKey = "X09F3AYS9EUK3CRD";     //  Enter your Write API key here
-const char *ssid =  "Aashka";     // Enter your WiFi Name
-const char *pass =  "rosie@123"; // Enter your WiFi Password
+String apiKey = " "; //  Enter your Write API key here     
+const char *ssid =  " "; // Enter your WiFi Name   
+const char *pass =  " "; // Enter your WiFi Password
 const char* server = "api.thingspeak.com";
 const int sensorPin= 0;
 int air_quality;
-int air_quality1;
-int LED = D7;
-String value1="Good";
-String value2="Poor";
 
 WiFiClient client;
 void setup() 
@@ -47,10 +43,10 @@ void loop()
      air_quality = gasSensor.getPPM();
                       if (client.connect(server,80))   
                       {  
-                             air_quality1 = ((analogRead(A0)/1024.0)*100.0); 
+                             air_quality = ((analogRead(A0)/1024.0)*100.0); 
                              String postStr = apiKey;
                              postStr +="&field1=";
-                             postStr += String(air_quality1);
+                             postStr += String(air_quality);
                              postStr += "\r\n\r\n";
  
                              client.print("POST /update HTTP/1.1\n");
@@ -63,17 +59,17 @@ void loop()
                              client.print("\n\n");
                              client.print(postStr);
                              Serial.print("Air Quality: ");
-                             Serial.print(air_quality1);
+                             Serial.print(air_quality);
                              Serial.println(" PPM. Send to Thingspeak.");
                              
-                             if (air_quality1 < 100)
+                             if (air_quality < 100)
                              {
-                              //ThingSpeak.writeField(1564149, 2, "good", "X09F3AYS9EUK3CRD");
+                       
                              Serial.print("Good Air Quality: ");
                                lcd.clear();
                                lcd.setCursor(0,0);
                                lcd.print("Quality :");
-                               lcd.print(air_quality1);
+                               lcd.print(air_quality);
                                lcd.print(" PPM");
                                lcd.setCursor(0,1);
                                lcd.print("Good Air Quality!");
@@ -81,19 +77,19 @@ void loop()
                                lcd.clear();
                               }
                               else{
-                                //ThingSpeak.writeField(1564149, 2, "poor", "X09F3AYS9EUK3CRD");
+                                
                                 Serial.print("Poor Air Quality: ");
                                 lcd.clear();
                                lcd.setCursor(0,0);
                                lcd.print("Quality:");
-                               lcd.print(air_quality1);
+                               lcd.print(air_quality);
                                lcd.print("PPM");
                                lcd.setCursor(0,1);
                                lcd.print("Unhealthy Air!");
                                delay(10000);
                                lcd.clear();
                               }
-                              //------
+                              
                              
                         }
           client.stop();
