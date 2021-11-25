@@ -7,5 +7,14 @@ It makes use of Sensor such as MQ135 and NodeMCU ESP8266 Wi-Fi module to send th
 Following is the hardware setup for the project.<br><br>
 ![image](https://user-images.githubusercontent.com/83816588/143426532-a857a196-6d58-47b4-bb60-81b778c058e3.png)
 <br><br>
-Air quality monitoring.ino is an arduino code to be uploaded on NodeMCU. 
+The <i>nodemcu.ino</i> is an arduino code to be uploaded on NodeMCU and to get connected to the thingspeak.<br><br>
+Below are some screenshots of the ouput. <br><br>
+![image](https://user-images.githubusercontent.com/83816588/143428801-5781c90d-da59-40ce-8867-de93f393049b.png)
+<p align = "center">Serial Monitor Output</p> <br><br>
+
+![image](https://user-images.githubusercontent.com/83816588/143429558-63c8c30d-bfe5-477c-bc82-1814285de6f9.png)
+<p align = "center">Live Data on thingspeak</p> <br><br>
+
+![image](https://user-images.githubusercontent.com/83816588/143429215-f2cc96be-115a-4364-8abd-982db0a73a19.png)
+<p align = "center">CO2 level increases above 60ppm, hence red lamp indicator turned on</p> <br><br>
 
